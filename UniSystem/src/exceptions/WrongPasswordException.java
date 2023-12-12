@@ -1,4 +1,4 @@
-package exceptions diagram 2.0;
+package exceptions;
 
 
 /**

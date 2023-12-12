@@ -1,10 +1,10 @@
-package exceptions;
+package users;
 
 
 /**
 * @generated
 */
-public class LowhIndexException {
+public class TechSupportSpecialist extends Employee {
     
     
     
@@ -17,8 +17,9 @@ public class LowhIndexException {
     /**
     * @generated
     */
-    public LowhIndexException() {
+    public void acceptOrder() {
         //TODO
     }
+    
     
 }
