@@ -1,138 +1,82 @@
-package users;
+package Users;
+
+import java.io.Serializable;
 
 
-/**
-* @generated
-*/
-public class Manager extends Employee {
+import Database.*;
+import Users.*;
+import Enums.*;
+import Package.*;
+import Additional.*;
+
+public class Manager extends Employee implements Serializable{
     
-    /**
-    * @generated
-    */
     private Faculty faculty;
-    
-    /**
-    * @generated
-    */
     private ManagerType managerType;
-    
-    
-    /**
-    * @generated
-    */
-    private DeansOffice deansOffice;
-    
-    /**
-    * @generated
-    */
     private News news;
     
+    public Manager() {}
     
-
-    /**
-    * @generated
-    */
+    public Manager(String name, String surname, Gender gender, String email) throws Exception {
+    	super(name, surname, gender, email);
+    }
+    
+    
+    
     private Faculty getFaculty() {
         return this.faculty;
     }
     
-    /**
-    * @generated
-    */
-    private Faculty setFaculty(Faculty faculty) {
-        this.faculty = faculty;
-    }
-    
-    
-    /**
-    * @generated
-    */
     private ManagerType getManagerType() {
         return this.managerType;
     }
     
-    /**
-    * @generated
-    */
-    private ManagerType setManagerType(ManagerType managerType) {
-        this.managerType = managerType;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public News getNews() {
-        return this.news;
-    }
-    
-    /**
-    * @generated
-    */
-    public News setNews(News news) {
-        this.news = news;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public DeansOffice getDeansOffice() {
-        return this.deansOffice;
-    }
-    
-    /**
-    * @generated
-    */
-    public DeansOffice setDeansOffice(DeansOffice deansOffice) {
-        this.deansOffice = deansOffice;
-    }
-    
-    
-    
-
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
+   
     public String viewInfoAboutStudent() {
         //TODO
         return "";
     }
     
-    /**
-    * @generated
-    */
     public String viewInfoAboutTeacher() {
         //TODO
         return "";
     }
     
-    /**
-    * @generated
-    */
-    public boolean approveStudentsRegistration() {
-        //TODO
-        return false;
-    }
+    public boolean approveRegistration(String id, int courseID) {
+		Course c = new Course();
+		for (Course cur : Database.courses) {
+			if (cur.courseID == courseID) {
+				c = cur;
+			}
+		}
+
+		for (User u : Database.users) {
+			if (u instanceof Student) {
+				Student i = (Student) u;
+				if (i.getId().equals(id)) {
+					c.students.add(i);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
     
-    /**
-    * @generated
-    */
     public String viewRequests() {
         //TODO
         return "";
     }
     
-    /**
-    * @generated
-    */
     public boolean assignCoursesToTeachers() {
         //TODO
         return false;
     }
     
+    
+    
+    public static Manager createManager(String name, String surname, Gender gender, String email) throws Exception {
+    	return new Manager(name, surname, gender, email);
+    }
     
 }
