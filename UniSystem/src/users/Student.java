@@ -1,256 +1,127 @@
-package users;
+package Users;
 
+import Enums.*;
 
-/**
-* @generated
-*/
-public class Student extends User implements OptionalResearcher {
+import Users.*;
+import Additional.*;
+import Package.*;
+import java.io.Serializable;
+
+public class Student extends User implements Serializable
+//implements OptionalResearcher 
+{
+    /////
     
-    /**
-    * @generated
-    */
     private String studentId;
-    
-    /**
-    * @generated
-    */
     private Degree degree;
-    
-    /**
-    * @generated
-    */
-    private int yearOfStudy;
-    
-    /**
-    * @generated
-    */
+    private Integer yearOfStudy;
     private Faculty faculty;
-    
-    /**
-    * @generated
-    */
-    private double GPA;
-    
-    /**
-    * @generated
-    */
-    private int credits;
-    
-    
-    /**
-    * @generated
-    */
+    private Double GPA;
+    private Integer credits;
     private Course course;
-    
-    /**
-    * @generated
-    */
     private Organization organization;
     
     
-
-    /**
-    * @generated
-    */
-    private String getStudentId() {
-        return this.studentId;
+    public Student() {}
+    
+    public Student(String name, String surname, Gender gender, String email) {
+    	super(name, surname, gender, email);
     }
     
-    /**
-    * @generated
-    */
-    private String setStudentId(String studentId) {
-        this.studentId = studentId;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private Degree getDegree() {
-        return this.degree;
-    }
-    
-    /**
-    * @generated
-    */
-    private Degree setDegree(Degree degree) {
-        this.degree = degree;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    private int getYearOfStudy() {
-        return this.yearOfStudy;
-    }
-    
-    /**
-    * @generated
-    */
-    private int setYearOfStudy(Integer yearOfStudy) {
-        this.yearOfStudy = yearOfStudy;
-    }
-    
-    
-    /**
-    * @generated
-    */
     private Faculty getFaculty() {
         return this.faculty;
     }
     
-    /**
-    * @generated
-    */
-    private Faculty setFaculty(Faculty faculty) {
-        this.faculty = faculty;
+    private Degree getDegree() {
+        return this.degree;
     }
     
+    private String getStudentId() {
+        return this.studentId;
+    }
     
-    /**
-    * @generated
-    */
-    private double getGPA() {
+    private void setStudentId(String studentId) {
+        this.studentId = studentId;
+    }
+    
+    private Integer getYearOfStudy() {
+        return this.yearOfStudy;
+    }
+    
+    private void setYearOfStudy(Integer yearOfStudy) {
+        this.yearOfStudy = yearOfStudy;
+    }
+
+    
+    private Double getGPA() {
         return this.GPA;
     }
     
-    /**
-    * @generated
-    */
-    private double setGPA(Double GPA) {
+    private void setGPA(Double GPA) {
         this.GPA = GPA;
     }
     
-    
-    /**
-    * @generated
-    */
-    private int getCredits() {
+    private Integer getCredits() {
         return this.credits;
     }
     
-    /**
-    * @generated
-    */
-    private int setCredits(Integer credits) {
+    private void setCredits(Integer credits) {
         this.credits = credits;
     }
     
     
-    
-    /**
-    * @generated
-    */
-    public Course getCourse() {
-        return this.course;
-    }
-    
-    /**
-    * @generated
-    */
-    public Course setCourse(Course course) {
-        this.course = course;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Organization getOrganization() {
-        return this.organization;
-    }
-    
-    /**
-    * @generated
-    */
-    public Organization setOrganization(Organization organization) {
-        this.organization = organization;
-    }
-    
-    
-    
-
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
     public String viewCourse() {
         //TODO
         return "";
     }
     
-    /**
-    * @generated
-    */
     public boolean addCourse() {
         //TODO
         return false;
     }
     
-    /**
-    * @generated
-    */
     public boolean dropCourse() {
         //TODO
         return false;
     }
     
-    /**
-    * @generated
-    */
     public String viewMarks() {
         //TODO
         return "";
     }
     
-    /**
-    * @generated
-    */
     public String viewTranscript() {
         //TODO
         return "";
     }
     
-    /**
-    * @generated
-    */
     public String getTranscript() {
         //TODO
         return "";
     }
     
-    /**
-    * @generated
-    */
     public String getInfoAboutTeacher() {
         //TODO
         return "";
     }
     
-    /**
-    * @generated
-    */
     public void rateTeachers() {
         //TODO
     }
     
-    /**
-    * @generated
-    */
     public void becomeAMemberOfOrganization() {
         //TODO
     }
     
-    /**
-    * @generated
-    */
+    
     public String quitOrganization() {
         //TODO
         return "";
     }
     
+    
+    public static Student createStudent(String name, String surname, Gender gender, String email) {
+    	return new Student(name, surname, gender, email);
+    }
     
 }
