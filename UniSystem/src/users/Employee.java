@@ -1,46 +1,40 @@
-package users;
+package Users;
+
+import java.util.Vector;
 
 
-/**
-* @generated
-*/
+import Additional.*;
+import Enums.Gender;
+
 public class Employee extends User {
-    
-    /**
-    * @generated
-    */
-    private Vector<String> messages;
-    
-    
-    
 
-    /**
-    * @generated
-    */
+    private Vector<String> messages;
+    private double salary;
+    
+	public Employee() {}
+    public Employee(String name, String surname, Gender gender, String email) throws Exception {
+		super(name, surname, gender, email);
+	}
+    
+    
+    
+    
     private Vector<String> getMessages() {
         return this.messages;
     }
     
-    /**
-    * @generated
-    */
-    private Vector<String> setMessages(Vector<String> messages) {
+    private void setMessages(Vector<String> messages) {
         this.messages = messages;
     }
-    
-    
-    
-    
-
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
+  
     public String getMessage() {
         //TODO
         return "";
     }
     
+    
+    public String toString() {
+        return super.toString();
+    }
     
 }
