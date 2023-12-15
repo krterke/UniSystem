@@ -1,18 +1,6 @@
-package users;
+package Users;
 
+public class GraduateStudent extends Student {
 
-/**
-* @generated
-*/
-public class GraduateStudent extends Student implements Researcher {
-    
-    
-    
-
-    
-    
-
-    //                          Operations                                  
-    
     
 }
