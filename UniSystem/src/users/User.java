@@ -1,7 +1,10 @@
-package Users;
+package users;
+
+import java.util.Objects;
 
 import Additional.*;
-import Enums.*;
+import database.Database;
+import enums.*;
 
 public class User extends WrongLoginExceptionWrongPasswordException {
 	
