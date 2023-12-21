@@ -1,74 +1,36 @@
 package additional;
 
+import users.Admin;
 
-/**
-* @generated
-*/
 public class LogFile {
-    
-    /**
-    * @generated
-    */
-    private int userId;
-    
-    /**
-    * @generated
-    */
+    private Integer userId;
     private String action;
-    
-    
-    /**
-    * @generated
-    */
     private Admin admin;
-    
-    
 
-    /**
-    * @generated
-    */
-    private int getUserId() {
+    public LogFile(){
+
+    }
+    public LogFile(Integer userId, String action, Admin admin;){
+        this.userId = userId;
+        this.action = action;
+        this.admin = admin;
+    }
+
+    private Integer getUserId() {
         return this.userId;
     }
-    
-    /**
-    * @generated
-    */
-    private int setUserId(Integer userId) {
+    private Integer setUserId(Integer userId) {
         this.userId = userId;
     }
-    
-    
-    /**
-    * @generated
-    */
     private String getAction() {
         return this.action;
     }
-    
-    /**
-    * @generated
-    */
     private String setAction(String action) {
         this.action = action;
     }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public Admin getAdmin() {
-        return this.admin;
-    }
-    
-    /**
-    * @generated
-    */
-    public Admin setAdmin(Admin admin) {
-        this.admin = admin;
-    }
-    
-    
+
+    public String toString() {
+		return "User: "+userId.getName()+" "+userId.getSurname()+"\n"+"Actions: "+getAction();
+	}
     
 }
