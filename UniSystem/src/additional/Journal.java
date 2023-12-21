@@ -1,95 +1,63 @@
 package additional;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
-* @generated
-*/
+import users.User;
+
 public class Journal {
-    
-    /**
-    * @generated
-    */
     private String name;
-    
-    /**
-    * @generated
-    */
     private Vector<ResearchPaper> papers;
-    
-    /**
-    * @generated
-    */
-    private User subscribers;
-    
-    
-    /**
-    * @generated
-    */
+    private List<Observer> subscribers = new ArrayList<>();
+    // private User subscribers;
     private System system;
-    
-    
 
-    /**
-    * @generated
-    */
+    //constructors
+    public Journal(){
+    }
+    public Journal(String name,User subscribers,Vector<ResearchPaper> papers, System system;){
+        this.name = name;
+        this.papers = papers;
+        this.subscribers = subscribers;
+        this.system = system;
+    }
+
+    // getters and setters
     private String getName() {
         return this.name;
     }
-    
-    /**
-    * @generated
-    */
     private String setName(String name) {
         this.name = name;
     }
-    
-    
-    /**
-    * @generated
-    */
     private Vector<ResearchPaper> getPapers() {
         return this.papers;
     }
-    
-    /**
-    * @generated
-    */
     private Vector<ResearchPaper> setPapers(Vector<ResearchPaper> papers) {
         this.papers = papers;
     }
-    
-    
-    /**
-    * @generated
-    */
     private User getSubscribers() {
         return this.subscribers;
     }
-    
-    /**
-    * @generated
-    */
     private User setSubscribers(User subscribers) {
         this.subscribers = subscribers;
     }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public System getSystem() {
-        return this.system;
+
+    //methods
+    public void subscribe(Observer observer) {
+        subscribers.add(observer);
     }
-    
-    /**
-    * @generated
-    */
-    public System setSystem(System system) {
-        this.system = system;
+    public void unsubscribe(Observer observer) {
+        subscribers.remove(observer);
     }
-    
-    
-    
+    private void notifySubscribers() {
+        for (Observer subscriber : subscribers) {
+            subscriber.update(name);
+        }
+    }
+    // !
+    interface Observer {
+        void update(String name);
+    }  
+
+
 }
