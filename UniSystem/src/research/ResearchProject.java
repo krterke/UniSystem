@@ -1,94 +1,55 @@
 package research;
 
+import java.util.Vector;
 
-/**
-* @generated
-*/
+import users.*;
+
 public class ResearchProject {
-    
-    /**
-    * @generated
-    */
-    private Vector<ResearchPaper>2 researchPapers;
-    
-    /**
-    * @generated
-    */
-    private String theme;
-    
-    
-    /**
-    * @generated
-    */
-    private Researcher researcher;
-    
-    /**
-    * @generated
-    */
-    private ResearchPaper researchPaper;
-    
+
+    private String topic;
+    private Vector<ResearchPaper> publishedPapers;
+    private Vector<Researcher> projectParticipants;
+
+    public ResearchProject(String topic) {
+        this.topic = topic;
+        this.publishedPapers = new Vector<>();
+        this.projectParticipants = new Vector<>();
+    }
+
+    public String getTopic() {
+        return topic;
+    }
+
+    public Vector<ResearchPaper> getPublishedPapers() {
+        return publishedPapers;
+    }
+
+    public Vector<Researcher> getProjectParticipants() {
+        return projectParticipants;
+    }
+
+    public void addPublishedPaper(ResearchPaper paper) {
+        publishedPapers.add(paper);
+    }
+
+    public void addProjectParticipant(Researcher researcher) {
+        projectParticipants.add(researcher);
+    }
+
+    public void removeProjectParticipant(Researcher researcher) {
+        projectParticipants.remove(researcher);
+    }
     
 
-    /**
-    * @generated
-    */
-    public Vector<ResearchPaper>2 getResearchPapers() {
-        return this.researchPapers;
+    public int getTotalCitations() {
+        int totalCitations = 0;
+        for (ResearchPaper paper : publishedPapers) {
+            totalCitations += paper.getCitationCount();
+        }
+        return totalCitations;
     }
-    
-    /**
-    * @generated
-    */
-    public Vector<ResearchPaper>2 setResearchPapers(Vector<ResearchPaper>2 researchPapers) {
-        this.researchPapers = researchPapers;
+
+    public boolean isPaperInProject(ResearchPaper paper) {
+        return publishedPapers.contains(paper);
     }
-    
-    
-    /**
-    * @generated
-    */
-    private String getTheme() {
-        return this.theme;
-    }
-    
-    /**
-    * @generated
-    */
-    private String setTheme(String theme) {
-        this.theme = theme;
-    }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public ResearchPaper getResearchPaper() {
-        return this.researchPaper;
-    }
-    
-    /**
-    * @generated
-    */
-    public ResearchPaper setResearchPaper(ResearchPaper researchPaper) {
-        this.researchPaper = researchPaper;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Researcher getResearcher() {
-        return this.researcher;
-    }
-    
-    /**
-    * @generated
-    */
-    public Researcher setResearcher(Researcher researcher) {
-        this.researcher = researcher;
-    }
-    
-    
-    
 }
