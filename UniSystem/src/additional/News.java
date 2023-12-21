@@ -1,134 +1,58 @@
 package additional;
 
+import java.util.Date;
+import users.Manager;
 
-/**
-* @generated
-*/
 public class News {
-    
-    /**
-    * @generated
-    */
-    private String title;
-    
-    /**
-    * @generated
-    */
-    private String text;
-    
-    /**
-    * @generated
-    */
-    private Priority priority;
-    
-    /**
-    * @generated
-    */
-    private  time;
-    
-    
-    /**
-    * @generated
-    */
-    private Manager manager;
-    
-    /**
-    * @generated
-    */
-    private System system;
-    
-    
 
-    /**
-    * @generated
-    */
+    private String title;
+    private String text;
+    private Priority priority;
+    private Date date;;
+    private Manager manager;
+    private System system;
+	private Time time;
+	
+    public News(){
+
+    }
+    public News(String title, String text, Priority priority, Time time, Manager manager, System system){
+        this.title = title;
+        this.text = text;
+        this.priority = priority;
+        this.time = time;
+        this.manager = manager;
+        this.system = system;
+    }
+
     private String getTitle() {
         return this.title;
     }
-    
-    /**
-    * @generated
-    */
     private String setTitle(String title) {
         this.title = title;
     }
-    
-    
-    /**
-    * @generated
-    */
     private String getText() {
         return this.text;
     }
-    
-    /**
-    * @generated
-    */
     private String setText(String text) {
         this.text = text;
     }
-    
-    
-    /**
-    * @generated
-    */
     private Priority getPriority() {
         return this.priority;
     }
-    
-    /**
-    * @generated
-    */
     private Priority setPriority(Priority priority) {
         this.priority = priority;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private  getTime() {
-        return this.time;
+    private Date getTime() {
+        return this.date;
     }
-    
-    /**
-    * @generated
-    */
-    private  setTime(invalid time) {
+    private Date setTime(Date time) {
         this.time = time;
     }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public System getSystem() {
-        return this.system;
+
+    public String toString(){
+        return "----------"+"\n"+priority+"\n"+title+"\n"+text+"\n"+date+"\n"+"----------";
     }
-    
-    /**
-    * @generated
-    */
-    public System setSystem(System system) {
-        this.system = system;
-    }
-    
-    
-    /**
-    * @generated
-    */
-    public Manager getManager() {
-        return this.manager;
-    }
-    
-    /**
-    * @generated
-    */
-    public Manager setManager(Manager manager) {
-        this.manager = manager;
-    }
-    
-    
+
     
 }
