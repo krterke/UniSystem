@@ -1,6 +1,7 @@
 package additional;
 
 import java.util.Date;
+import enums.*;
 import users.Manager;
 
 public class News {
@@ -28,19 +29,19 @@ public class News {
     private String getTitle() {
         return this.title;
     }
-    private String setTitle(String title) {
+    private void setTitle(String title) {
         this.title = title;
     }
     private String getText() {
         return this.text;
     }
-    private String setText(String text) {
+    private void setText(String text) {
         this.text = text;
     }
     private Priority getPriority() {
         return this.priority;
     }
-    private Priority setPriority(Priority priority) {
+    private void setPriority(Priority priority) {
         this.priority = priority;
     }
     private Date getTime() {
