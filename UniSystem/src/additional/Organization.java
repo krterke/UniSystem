@@ -1,134 +1,65 @@
 package additional;
 
+import java.io.Serializable;
+import java.util.Vector;
 
-/**
-* @generated
-*/
-public class Organization {
-    
-    /**
-    * @generated
-    */
+import users.Student;
+
+public class Organization implements Serializable{
     private String nameOfOrganization;
-    
-    /**
-    * @generated
-    */
-    private Vector<Student>2 members;
-    
-    /**
-    * @generated
-    */
+    private Vector<Student> members;
     private Student president;
-    
-    
-    /**
-    * @generated
-    */
     private System system;
-    
-    /**
-    * @generated
-    */
     private Student student;
-    
-    
 
-    /**
-    * @generated
-    */
+    public Organization(){
+
+    }
+    public Organization(String nameOfOrganization, System system, Student student){
+        this.nameOfOrganization = nameOfOrganization;
+        this.system = system;
+        this.student = student;
+    }
+
     private String getNameOfOrganization() {
         return this.nameOfOrganization;
     }
-    
-    /**
-    * @generated
-    */
     private String setNameOfOrganization(String nameOfOrganization) {
         this.nameOfOrganization = nameOfOrganization;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private Vector<Student>2 getMembers() {
+    private Vector<Student> getMembers() {
         return this.members;
     }
-    
-    /**
-    * @generated
-    */
-    private Vector<Student>2 setMembers(Vector<Student>2 members) {
+    private Vector<Student> setMembers(Vector<Student>2 members) {
         this.members = members;
     }
-    
-    
-    /**
-    * @generated
-    */
     private Student getPresident() {
         return this.president;
     }
-    
-    /**
-    * @generated
-    */
     private Student setPresident(Student president) {
         this.president = president;
     }
-    
-    
-    
-    /**
-    * @generated
-    */
-    public System getSystem() {
-        return this.system;
+    public boolean addMember(Student S) {
+        for(Student cur:members){
+			if(cur.equals(s)) {
+				return false;
+			}
+		}
+		members.add(s);
+		return true;
     }
-    
-    /**
-    * @generated
-    */
-    public System setSystem(System system) {
-        this.system = system;
+    public boolean dropMember(Student S) {
+        for(Student cur:members) {
+			if(cur.equals(s)) {
+				members.remove(s);
+				return true;
+			}
+		}
+		return false;
     }
-    
-    
-    /**
-    * @generated
-    */
-    public Student getStudent() {
-        return this.student;
-    }
-    
-    /**
-    * @generated
-    */
-    public Student setStudent(Student student) {
-        this.student = student;
-    }
-    
-    
-    
-
-    //                          Operations                                  
-    
-    /**
-    * @generated
-    */
-    public boolean addMember() {
-        //TODO
-        return false;
-    }
-    
-    /**
-    * @generated
-    */
-    public boolean dropMember() {
-        //TODO
-        return false;
-    }
+    public String toString() {
+		return "Name: "+nameOfOrganization+"\n"+"President: "+president;
+	}
     
     
 }
