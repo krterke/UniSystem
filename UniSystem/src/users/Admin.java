@@ -23,7 +23,7 @@ public class Admin extends Employee implements Serializable{
 		super(name, surname, gender, email);
 	}
 	
-	public static Admin getInstance(String name, String surname, Gender gender, String email) throws Exception {
+	public static Admin getInstance(Login login, String name, String surname, Gender gender, String email) throws Exception {
 		if(instance == null) {
 			instance = new Admin(name, surname, gender, email);
 		}
@@ -31,8 +31,8 @@ public class Admin extends Employee implements Serializable{
 	}
 	
 	//methods
-	public void addUser(String name,  String surname, Gender gender, String email) throws NumberFormatException, Exception {
-		//User newUser = new User(email, phoneNumber, id, gender, name, surname);
+	public void addUser(Login login, String email, int phoneNumber, Gender gender, String name, String surname) throws NumberFormatException, Exception {
+		//User newUser = new User(login, email, phoneNumber, id, gender, name, surname);
 		System.out.println("Choose type of user:\n1.Student\n2.Teacher\n3.Manager\n4.TechSupportSpecialist\n5.Researcher\nexit");
 		try(BufferedReader br = new BufferedReader (new InputStreamReader(System.in))) {
 			String text;
@@ -59,7 +59,7 @@ public class Admin extends Employee implements Serializable{
 					break;
 				}
 //				else if(text.equals("Researcher")) {
-//					db.addUser(Researcher.createResearcher(email, phoneNumber, gender, name, surname));
+//					db.addUser(Researcher.createResearcher(login, email, phoneNumber, gender, name, surname));
 //					break;
 //				}
             }
@@ -69,22 +69,43 @@ public class Admin extends Employee implements Serializable{
 		}
 		
 	}
-	public void deleteUser(int id) {
-		//
-	}
-	public void updateUser() {
-		//
+	
+
+	public String addStudent(String name,String surname,Gender gender, String email) {
+		Student s=new Student(name,surname,gender, email);
+		Database.users.add(s);
+		return "Success";
 	}
 	
-	public void seeLogFiles() {
-		//
+	public String addTeacher(String name,String surname,Gender gender, String email){
+		Teacher t=new Teacher(name,surname, gender, email);
+		Database.users.add(t);
+		return "Success";
+	}
+	
+	public boolean deleteUser(String id) {
+		for(User cur:Database.users) {
+			if(cur.getID()== id) {
+				Database.users.remove(cur);
+				return true;
+			}
+		}
+		return false;
+	}
+	public String seeLogFiles() {
+		String s="";
+		for(LogFiles l:Database.logfiles) {
+			s+=l.toString()+"\n";
+		}
+		return s;
 	}
 	
 	//toString
 	@Override
 	public String toString() {
-		return super.toString();
+		return "Admin [" + super.toString();
 	}
+
 
 }
 
