@@ -2,7 +2,7 @@ package users;
 
 import java.util.Objects;
 
-import Additional.*;
+import additional.*;
 import database.Database;
 import enums.*;
 
