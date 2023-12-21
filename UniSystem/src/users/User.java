@@ -3,57 +3,88 @@ package Users;
 import Additional.*;
 import Enums.*;
 
-public class User {
-    
-
+public class User extends WrongLoginExceptionWrongPasswordException {
+	
     private String name;
     private String surname;
-    private Gender gender;
+    Gender gender;
     private String id;
-    private Login login;
     private String email;
-    private Admin admin;
-    private System system;
+    private int phoneNumber;
+    private Login login;
+    private String password;
+    Admin admin;
+    System system;
     
-    public User () {};
+    public User() {
+    	
+    }
+    public User(String name, String surname, Gender gender, String id, String email, int phoneNumber) {
+		this.name = name;
+		this.surname = surname;
+		this.gender = gender;
+		this.id= id;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		
+	public User(String name, String surname) {
+			this.name = name;
+			this.surname = surname;
+	}
+	
+    public User(String name, String surname, String email) {
+		this.email = email;
+		this.name = name;
+		this.surname = surname;
+	}
+
+	public User(String name, String surname, String log, String pass) {
+		this.setPassword(pass);
+		this.setLogin(log);
+		this.name = name;
+		this.surname = surname;
+	}
+
+	public User(String name, String surname, String email, int phoneNumber, Gender gender) {
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.gender = gender;
+	}
     
-    public User (String name, String surname, Gender gender, String email) {
-    	//this.login = login;
-    	this.name = name;
-     	this.surname = surname;
-     	this.gender = gender;
-     	this.email = email;
-    };
-    
-    private String getName() {
+    public String getName() {
         return this.name;
     }
-    
-    private void setName(String name) {
+
+    public String setName(String name) {
         this.name = name;
     }
-
-    private String getSurname() {
+    
+    public String getSurname() {
         return this.surname;
     }
     
-    private void setSurname(String surname) {
+ 
+    public String setSurname(String surname) {
         this.surname = surname;
     }
     
-    private Gender getGender() {
+    public Gender getGender() {
         return this.gender;
     }
     
-    private void setGender(Gender gender) {
+
+    public Gender setGender(Gender gender) {
         this.gender = gender;
     }
     
-    private String getId() {
+
+    public String getId() {
         return this.id;
     }
     
-    private void setId(String id) {
+    private String setId(String id) {
         this.id = id;
     }
     
@@ -61,7 +92,7 @@ public class User {
         return this.login;
     }
     
-    private void setLogin(Login login) {
+    private Login setLogin(Login login) {
         this.login = login;
     }
     
@@ -69,40 +100,83 @@ public class User {
         return this.email;
     }
     
-    private void setEmail(String email) {
+    private String setEmail(String email) {
         this.email = email;
     }
     
-    public int compareTo() {
-        //TODO
-        return 0;
+    private Integer getPhoneNumber() {
+        return this.phoneNumber;
+    }
+    
+    private Integer setPhoneNumber(Integer phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+                                     
+
+    public int compareTo(User o) {
+    	int result = this.surname.compareTo(o.surname);
+		if (result == 0) {
+			result = this.name.compareTo(o.name);
+		}
+		return result;        
     }
     
     public int hashCode() {
-        //TODO
-        return 0;
-    }
+    	return Objects.hash(email, phoneNumber, surname, name);
+	}
     
-    public boolean equals() {
-        //TODO
-        return false;
-    }
+    public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		User u = (User) o;
+		return email == u.email && phoneNumber == u.phoneNumber && surname.equals(u.surname) && name.equals(u.name);
+	}
     
-    public boolean logIn() {
-        //TODO
-        return false;
-    }
+    public boolean signIn(String l, String p) {
+		for (User cur : Database.users) {
+			if (cur.login.equals(l) && cur.password.equals(p)) {
+				return true;
+			}
+		}
+		return false;
+	}
     
-    public boolean logOut() {
-        //TODO
-        return false;
-    }
+    public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+    public boolean changePassword(String newPassword) {
+		for (User cur : Database.users) {
+			if (cur.equals(this)) {
+				this.setPassword(newPassword);
+				return true;
+			}
+		}
+		return false;
+	}
     
-    public boolean changePassword() {
-        //TODO
-        return false;
-    }
-    
+    public String viewNews() {
+		String s = "";
+		for (News cur : Database.news) {
+			s += cur.toString() + "\n";
+		}
+		return s;
+	}
+
     public String toString() {
 		return "Name: " + name +" Surname: " + surname + " Gender: " + gender + " Email: " + email;
 	}
