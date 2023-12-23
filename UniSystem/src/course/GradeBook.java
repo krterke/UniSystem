@@ -1,134 +1,78 @@
 package course;
 
+import java.util.Map;
 
-/**
-* @generated
-*/
+import enums.*;
+
 public class GradeBook {
-    
-    /**
-    * @generated
-    */
-    private int studentId;
-    
-    /**
-    * @generated
-    */
-    private int gradeAtt1;
-    
-    /**
-    * @generated
-    */
-    private int gradeAtt2;
-    
-    /**
-    * @generated
-    */
-    private int finalExam;
-    
-    /**
-    * @generated
-    */
+    private String studentId;
+    private Map<String, Integer> gradeAtt1;
+    private Map<String, Integer> gradeAtt2;
+    private Map<String, Integer> finalExam;
+//    private Map<String, Integer> marks;
     private Marks mark;
-    
-    
-    /**
-    * @generated
-    */
     private Course course;
     
-    
-
-    /**
-    * @generated
-    */
-    private int getStudentId() {
+    //getters and setters
+    private String getStudentId() {
         return this.studentId;
     }
-    
-    /**
-    * @generated
-    */
-    private int setStudentId(Integer studentId) {
+    private void setStudentId(String studentId) {
         this.studentId = studentId;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private int getGradeAtt1() {
+    private  Map<String, Integer> getGradeAtt1() {
         return this.gradeAtt1;
     }
-    
-    /**
-    * @generated
-    */
-    private int setGradeAtt1(Integer gradeAtt1) {
+    private void setGradeAtt1(Map<String, Integer> gradeAtt1) {
         this.gradeAtt1 = gradeAtt1;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private int getGradeAtt2() {
+    private Map<String, Integer> getGradeAtt2() {
         return this.gradeAtt2;
     }
-    
-    /**
-    * @generated
-    */
-    private int setGradeAtt2(Integer gradeAtt2) {
+    private void setGradeAtt2(Map<String, Integer> gradeAtt2) {
         this.gradeAtt2 = gradeAtt2;
     }
-    
-    
-    /**
-    * @generated
-    */
-    private int getFinalExam() {
+    private Map<String, Integer> getFinalExam() {
         return this.finalExam;
     }
-    
-    /**
-    * @generated
-    */
-    private int setFinalExam(Integer finalExam) {
+    private void setFinalExam(Map<String, Integer> finalExam) {
         this.finalExam = finalExam;
     }
-    
-    
-    /**
-    * @generated
-    */
     private Marks getMark() {
         return this.mark;
     }
-    
-    /**
-    * @generated
-    */
-    private Marks setMark(Marks mark) {
+    private void setMark(Marks mark) {
         this.mark = mark;
     }
     
-    
-    
-    /**
-    * @generated
-    */
     public Course getCourse() {
         return this.course;
     }
     
-    /**
-    * @generated
-    */
-    public Course setCourse(Course course) {
+    public void setCourse(Course course) {
         this.course = course;
     }
     
+    //methods
+    public void viewStudentMarks(String studentId) {
+        if (mark.containsKey(studentId)) {
+            System.out.println("Marks for Student ID " + studentId + ": " + mark.get(studentId));
+        } else {
+            System.out.println("No marks available for Student ID " + studentId);
+        }
+    }
+    
+    public void setStudentMarks(String studentId, int marksValue) {
+        if (mark.contains(studentId)) {
+            mark.replace(studentId, marksValue);
+            System.out.println("Marks updated for Student ID " + studentId);
+        } else {
+            System.out.println("Student ID " + studentId + " not found in the gradebook.");
+        }
+    }
+    
+    
+
     
     
 }
