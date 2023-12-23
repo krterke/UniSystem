@@ -1,111 +1,112 @@
 package users;
 
-import java.util.Objects;
-
 import additional.*;
-import database.Database;
+import database.*;
 import enums.*;
 
-public class User extends WrongLoginExceptionWrongPasswordException {
-	
+import java.io.Serializable;
+import java.util.Objects;
+
+public class User implements Serializable{
+    
+	private static final long serialVersionUID = 123456789L;
+
     private String name;
     private String surname;
     Gender gender;
     private String id;
     private String email;
-    private Login login;
     private String password;
+    private String login;
+    //private Login login;
+    
     Admin admin;
     System system;
     
-    public User() {
-    	
+    public User () {}
+    
+    public User (String name, String surname, Gender gender, String email) {
+    	//this.login = login;
+    	this.name = name;
+     	this.surname = surname;
+     	this.gender = gender;
+     	this.email = email;
     }
-    public User(String name, String surname, Gender gender, String id, String email) {
+    
+    public User (String name, String surname, Gender gender, String id, String email) {
+    	//this.login = login;
+    	this.name = name;
+     	this.surname = surname;
+     	this.gender = gender;
+     	this.id = id;
+     	this.email = email;
+    }
+    
+    public User(String name,String surname,String email) {
+    	this.name = name;
+     	this.surname = surname;
+     	this.email = email;
+	}
+	public User(String name,String surname) {
 		this.name = name;
-		this.surname = surname;
-		this.gender = gender;
-		this.id= id;
-		this.email = email;
-		
-	public User(String name, String surname) {
-			this.name = name;
-			this.surname = surname;
+     	this.surname = surname;
 	}
 	
-    public User(String name, String surname, String email) {
-		this.email = email;
-		this.name = name;
-		this.surname = surname;
-	}
-
 	public User(String name, String surname, String log, String pass) {
 		this.setPassword(pass);
 		this.setLogin(log);
 		this.name = name;
 		this.surname = surname;
 	}
-
-	public User(String name, String surname, String email, int phoneNumber, Gender gender) {
-		this.name = name;
-		this.surname = surname;
-		this.email = email;
-		this.phoneNumber = phoneNumber;
-		this.gender = gender;
-	}
-    
-    public String getName() {
+	
+    protected String getName() {
         return this.name;
     }
-
-    public String setName(String name) {
+    
+    protected void setName(String name) {
         this.name = name;
     }
-    
-    public String getSurname() {
+
+    protected String getSurname() {
         return this.surname;
     }
     
- 
-    public String setSurname(String surname) {
+    protected void setSurname(String surname) {
         this.surname = surname;
     }
     
-    public Gender getGender() {
+    protected Gender getGender() {
         return this.gender;
     }
     
-
-    public Gender setGender(Gender gender) {
+    protected void setGender(Gender gender) {
         this.gender = gender;
     }
     
-
-    public String getId() {
+    protected String getId() {
         return this.id;
     }
     
-    private String setId(String id) {
+    protected void setId(String id) {
         this.id = id;
     }
     
-    private Login getLogin() {
-        return this.login;
-    }
+//    protected Login getLogin() {
+//        return this.login;
+//    }
+//    
+//    protected void setLogin(Login login) {
+//        this.login = login;
+//    }
     
-    private Login setLogin(Login login) {
-        this.login = login;
-    }
-    
-    private String getEmail() {
+    protected String getEmail() {
         return this.email;
     }
     
-    private String setEmail(String email) {
+    protected void setEmail(String email) {
         this.email = email;
     }
-                                     
-
+    
     public int compareTo(User o) {
     	int result = this.surname.compareTo(o.surname);
 		if (result == 0) {
@@ -126,15 +127,16 @@ public class User extends WrongLoginExceptionWrongPasswordException {
 		User u = (User) o;
 		return email == u.email && surname.equals(u.surname) && name.equals(u.name);
 	}
-    
-    public boolean signIn(String l, String p) {
-		for (User cur : Database.users) {
+    public boolean signIn(String l, String p) throws Exception {
+		for (User cur : Database.getInstance().getUsers()) {
 			if (cur.login.equals(l) && cur.password.equals(p)) {
 				return true;
 			}
 		}
 		return false;
 	}
+    
+    
     
     public String getLogin() {
 		return login;
@@ -151,9 +153,9 @@ public class User extends WrongLoginExceptionWrongPasswordException {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-    public boolean changePassword(String newPassword) {
-		for (User cur : Database.users) {
+    
+    public boolean changePassword(String newPassword) throws Exception {
+		for (User cur : Database.getInstance().getUsers()) {
 			if (cur.equals(this)) {
 				this.setPassword(newPassword);
 				return true;
@@ -162,14 +164,16 @@ public class User extends WrongLoginExceptionWrongPasswordException {
 		return false;
 	}
     
-    public String viewNews() {
+    
+    public String viewNews() throws Exception {
 		String s = "";
-		for (News cur : Database.news) {
+		for (News cur : Database.getInstance().getNews()) {
 			s += cur.toString() + "\n";
 		}
 		return s;
 	}
-
+    
+    
     public String toString() {
 		return "Name: " + name +" Surname: " + surname + " Gender: " + gender + " Email: " + email;
 	}
