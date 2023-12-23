@@ -13,7 +13,6 @@ public class User extends WrongLoginExceptionWrongPasswordException {
     Gender gender;
     private String id;
     private String email;
-    private int phoneNumber;
     private Login login;
     private String password;
     Admin admin;
@@ -22,13 +21,12 @@ public class User extends WrongLoginExceptionWrongPasswordException {
     public User() {
     	
     }
-    public User(String name, String surname, Gender gender, String id, String email, int phoneNumber) {
+    public User(String name, String surname, Gender gender, String id, String email) {
 		this.name = name;
 		this.surname = surname;
 		this.gender = gender;
 		this.id= id;
 		this.email = email;
-		this.phoneNumber = phoneNumber;
 		
 	public User(String name, String surname) {
 			this.name = name;
@@ -106,14 +104,6 @@ public class User extends WrongLoginExceptionWrongPasswordException {
     private String setEmail(String email) {
         this.email = email;
     }
-    
-    private Integer getPhoneNumber() {
-        return this.phoneNumber;
-    }
-    
-    private Integer setPhoneNumber(Integer phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
                                      
 
     public int compareTo(User o) {
@@ -125,7 +115,7 @@ public class User extends WrongLoginExceptionWrongPasswordException {
     }
     
     public int hashCode() {
-    	return Objects.hash(email, phoneNumber, surname, name);
+    	return Objects.hash(email, surname, name);
 	}
     
     public boolean equals(Object o) {
@@ -134,7 +124,7 @@ public class User extends WrongLoginExceptionWrongPasswordException {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		User u = (User) o;
-		return email == u.email && phoneNumber == u.phoneNumber && surname.equals(u.surname) && name.equals(u.name);
+		return email == u.email && surname.equals(u.surname) && name.equals(u.name);
 	}
     
     public boolean signIn(String l, String p) {
