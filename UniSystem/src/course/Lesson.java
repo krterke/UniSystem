@@ -1,41 +1,47 @@
 package course;
 
-import java.util.Vector;
 
 import additional.*;
 import enums.*;
 
 
+
 public class Lesson {
-	public Vector<Lesson> Lesson;
-    private LessonType lessonType;
-    private Course course;
+  
     private Time time;
+    private LessonType lessonType;
+    public Integer hour;
+    public Integer minutes;
     
-    private Time getTime() {
+    
+    public Time getTime() {
         return this.time;
     }
-    private void setTime(Time time) {
+    
+    public void setTime(Time time) {
         this.time = time;
     }
-
+    
     public LessonType getLessonType() {
         return this.lessonType;
     }
+    
     public void setLessonType(LessonType lessonType) {
         this.lessonType = lessonType;
     }
-    public Course getCourse() {
-        return this.course;
+    public int getHour() {
+        return this.hour;
     }
-    public void setCourse(Course course) {
-        this.course = course;
+
+    public void setHour(int hour) {
+        this.hour = hour;
     }
-    
-    public String toString() {
-		return "Name"++"\n"+"Lesson: "+lesson+"\n"+"Time: "+hour+":"+minutes;
-	}
-    
-    
-    
+
+    public int getMinutes() {
+        return this.minutes;
+    }
+
+    public void setMinutes(int minutes) {
+        this.minutes = minutes;
+    }
 }
