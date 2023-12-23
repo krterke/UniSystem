@@ -1,11 +1,14 @@
-package Package;
+package course;
 
 
 import java.io.Serializable;
 
+import enums.*;
+
 public class Order implements Serializable {
     private static final long serialVersionUID = 123456789L;
 
+    private OrderStatus status;
     private int orderId;
     private String description;
     private String customerName;
@@ -39,6 +42,17 @@ public class Order implements Serializable {
     public void setAccepted(boolean accepted) {
         isAccepted = accepted;
     }
+    
+    
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+    }
+    
+    
 
     @Override
     public String toString() {
