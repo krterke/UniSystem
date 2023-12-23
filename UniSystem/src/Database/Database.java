@@ -1,4 +1,4 @@
-package Database;
+package database;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,31 +8,31 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Vector;
 
-import Package.*;
-import Enums.*;
-import Additional.*;
-import Users.*;
+import course.*;
+import enums.*;
+import additional.*;
+import users.*;
 
 
 
 public class Database implements Serializable{
 	
 	//fields
-	Vector<User> users;
-	Vector<Employee> employees;
-	Vector<Student> students;
-	Vector<Teacher> teachers;
-	Vector<Course> courses;
-	Vector<Manager> managers;
-	Vector<TechSupportSpecialist> techSupportSpecialists;
-	Admin admin;
-	Vector<Organization> organizations;
-	Vector<News> news;
-	Vector<String> doneOrders;
-	Vector<String> acceptedOrders;
-	Vector<String> rejectedOrders;
-	Vector<LogFile> logFiles;
-	Vector<Journal> journals;
+	public Vector<User> users;
+	public Vector<Employee> employees;
+	public Vector<Student> students;
+	public Vector<Teacher> teachers;
+	public Vector<Course> courses;
+	public Vector<Manager> managers;
+	public Vector<TechSupportSpecialist> techSupportSpecialists;
+	public Admin admin;
+	public Vector<Organization> organizations;
+	public Vector<News> news;
+	public Vector<String> doneOrders;
+	public Vector<String> acceptedOrders;
+	public Vector<String> rejectedOrders;
+	public Vector<LogFile> logFiles;
+	public Vector<Journal> journals;
 	//Vector<Researcher> researchers;
 
 	private static Database instance;
