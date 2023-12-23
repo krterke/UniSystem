@@ -6,34 +6,40 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
+import additional.*;
 import course.*;
 import enums.*;
-import additional.*;
 import users.*;
 
 
 
 public class Database implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	//fields
 	public Vector<User> users;
-	public Vector<Employee> employees;
-	public Vector<Student> students;
-	public Vector<Teacher> teachers;
-	public Vector<Course> courses;
-	public Vector<Manager> managers;
-	public Vector<TechSupportSpecialist> techSupportSpecialists;
-	public Admin admin;
-	public Vector<Organization> organizations;
-	public Vector<News> news;
-	public Vector<String> doneOrders;
-	public Vector<String> acceptedOrders;
-	public Vector<String> rejectedOrders;
-	public Vector<LogFile> logFiles;
-	public Vector<Journal> journals;
-	//Vector<Researcher> researchers;
+	Vector<Employee> employees;
+	Vector<Student> students;
+	Vector<Teacher> teachers;
+	Vector<Course> courses;
+	Vector<Manager> managers;
+	Vector<TechSupportSpecialist> techSupportSpecialists;
+	Admin admin;
+	Vector<Organization> organizations;
+	Vector<News> news;
+	Vector<String> doneOrders;
+	Vector<String> acceptedOrders;
+	Vector<String> rejectedOrders;
+	Vector<LogFile> logFiles;
+	Vector<Journal> journals;
+	Vector<SMS> messages;
+	Vector<Researcher> researchers;
+    private static Map<Teacher, Vector<Integer>> ratings = new HashMap<>();
+
 
 	private static Database instance;
 	
@@ -53,7 +59,8 @@ public class Database implements Serializable{
 		this.logFiles = new Vector<LogFile>();
 		this.journals = new Vector<Journal>();
 		this.employees = new Vector<Employee>();
-		//this.researchers = new Vector<Researcher>();
+		this.messages = new Vector<SMS>();
+		this.researchers = new Vector<Researcher>();
 	}
 	public static Database getInstance() throws Exception {
 		if(instance == null) {
@@ -117,9 +124,12 @@ public class Database implements Serializable{
 	public Vector<Employee> getEmployees() {
 		return employees;
 	}
-//	public Vector<Researcher> getResearchers() {
-//		return researchers;
-//	}
+	public Vector<SMS> getMessages() {
+	    return messages;
+	}
+	public Vector<Researcher> getResearchers() {
+		return researchers;
+	}
 	
 	//add
 	public void addUser(User u) {
@@ -164,9 +174,12 @@ public class Database implements Serializable{
 	public void addEmployee(Employee e) {
 		employees.add(e);
 	}
-//	public void addResearcher(Researcher r) {
-//		researchers.add(r);
-//	}
+	public void addMessages(SMS m) {
+	    messages.add(m);
+	}
+	public void addResearcher(Researcher r) {
+		researchers.add(r);
+	}
 	
 	//delete
 	public void dellUser(User u) {
@@ -208,9 +221,16 @@ public class Database implements Serializable{
 	public void dellEmployee(Employee e) {
 		employees.remove(e);
 	}
-//	public void dellResearcher(Researcher r) {
-//		researchers.remove(r);
-//	}
+	public void dellMessages(SMS m) {
+	    messages.remove(m);
+	}
+	public void dellResearcher(Researcher r) {
+		researchers.remove(r);
+	}
+	
+	 public static Map<Teacher, Vector<Integer>> getRatings() {
+	        return ratings;
+	    }
 	
 	//methods
 	private static Database readDatabase() throws Exception {
