@@ -1,105 +1,123 @@
 package course;
 
 import java.util.Objects;
+
 import java.util.Vector;
 
-import users.Teacher;
-import users.Student;
 import enums.CourseType;
+import users.Student;
+import users.Teacher;
+
 
 public class Course {
-    
-    
+
     private String courseId;
+    private String courseName;
     private Vector<Lesson> lessons;
     private GradeBook gradebook;
     private CourseType courseType;
-    private int credit;
-    private int studentLimit;
+    private Integer credit;
+    private Integer studentLimit;
     private Vector<Teacher> teachers;
     private String prerequisite;
     private Vector<Student> students;
-    private GradeBook gradeBook;
+//    private GradeBook gradeBook;
     private Teacher teacher;
-    private Lesson lesson;
-    private System system;
-    private Student student;
-	public int courseID;
+//    private Lesson lesson;
+//    private Database database;
+//    private Student student;
+   
+	public Course() {}
+	public Course(String courseId, String courseName, int credit) {
+		this.courseId = courseId;
+		this.courseName= courseName;
+		this.credit = credit;
+	}
     
-    // getter and setters
-    private String getCourseId() {
+    public String getCourseName() {
+        return this.courseName;
+    }
+    
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+    
+    
+    public String getCourseId() {
         return this.courseId;
     }
     
-    private void setCourseId(String courseId) {
+    public void setCourseId(String courseId) {
         this.courseId = courseId;
     }
     
-    private Vector<Lesson> getLessons() {
+    public Vector<Lesson> getLessons() {
         return this.lessons;
     }
     
-    private void setLessons(Vector<Lesson> lessons) {
+    public void setLessons(Vector<Lesson> lessons) {
         this.lessons = lessons;
     }
     
-    private GradeBook getGradebook() {
+    public GradeBook getGradebook() {
         return this.gradebook;
     }
     
-    private void setGradebook(GradeBook gradebook) {
+    public void setGradebook(GradeBook gradebook) {
         this.gradebook = gradebook;
     }
     
-    
-    private CourseType getCourseType() {
+    public CourseType getCourseType() {
         return this.courseType;
     }
     
-    private void setCourseType(CourseType courseType) {
+    public void setCourseType(CourseType courseType) {
         this.courseType = courseType;
     }
     
-    private int getCredit() {
+    public Integer getCredit() {
         return this.credit;
     }
     
-    private void setCredit(Integer credit) {
+    public void setCredit(Integer credit) {
         this.credit = credit;
     }
     
-    private int getStudentLimit() {
+    public Integer getStudentLimit() {
         return this.studentLimit;
     }
     
-    private void setStudentLimit(Integer studentLimit) {
+    public void setStudentLimit(Integer studentLimit) {
         this.studentLimit = studentLimit;
     }
     
-    private Vector<Teacher> getTeachers() {
+    public Vector<Teacher> getTeachers() {
         return this.teachers;
     }
     
-    private void setTeachers(Vector<Teacher> teachers) {
+    public void setTeachers(Vector<Teacher> teachers) {
         this.teachers = teachers;
     }
     
-    
-    private String getPrerequisite() {
+    public String getPrerequisite() {
         return this.prerequisite;
     }
     
-    private void setPrerequisite(String prerequisite) {
+    public void setPrerequisite(String prerequisite) {
         this.prerequisite = prerequisite;
     }
     
-    private Vector<Student> getStudents() {
+    public Vector<Student> getStudents() {
         return this.students;
     }
     
-    private void setStudents(Vector<Student> students) {
+    public void setStudents(Vector<Student> students) {
         this.students = students;
     }
+    
+    
+    
+    
     
     public Teacher getTeacher() {
         return this.teacher;
@@ -109,50 +127,20 @@ public class Course {
         this.teacher = teacher;
     }
     
-    public System getSystem() {
-        return this.system;
-    }
-    
-    public void setSystem(System system) {
-        this.system = system;
-    }
-    
-    public Lesson getLesson() {
-        return this.lesson;
-    }
-    
-    public void setLesson(Lesson lesson) {
-        this.lesson = lesson;
-    }
-    
-    public Student getStudent() {
-        return this.student;
-    }
-    
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-    
-    public GradeBook getGradeBook() {
-        return this.gradeBook;
-    }
-    
-    public void setGradeBook(GradeBook gradeBook) {
-        this.gradeBook = gradeBook;
-    }
 
-    //                          Operations                                  
+    
+    
     
     public boolean addStudents(Vector <Student> newStudents) {
-        if (students == null) students = new Vector();
+        if (students == null) students = new Vector<>();
     
-	    if (students.size() + newStudents.size()> studentLimit) {
-	    	System.out.println("Cannot add students. Exceeded limit");
-	    	return false;
-	    }
-	    students.addAll(newStudents);
-	    System.out.println("Students added successfully to the course.");
-	    return true;
+        if (students.size() + newStudents.size()> studentLimit) {
+        	System.out.println("Cannot add students. Exceeded limit");
+        	return false;
+        }
+        students.addAll(newStudents);
+        System.out.println("Students added successfully to the course.");
+        return true;
     }
     
     public boolean deleteStudent(Student studentToRemove) {
@@ -165,18 +153,24 @@ public class Course {
             students.remove(studentToRemove);
             System.out.println("Student removed from the course.");
             return true;
-        } else {
+        } 
+        else {
             System.out.println("Student not found in the course.");
             return false;
         }
     }
+    
     public String viewPrequisite() {
         if (prerequisite != null && !prerequisite.isEmpty()) {
             return "Prerequisite for this course: " + prerequisite;
-        } else {
+        } 
+        else {
             return "No prerequisite specified for this course.";
         }
     }
+    
+ 
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true; 
@@ -187,6 +181,7 @@ public class Course {
         return Objects.equals(this.courseId, other.courseId);
     
     }
+    
     @Override
     public String toString() {
         return "Course ID: " + courseId +
@@ -195,11 +190,11 @@ public class Course {
                 ", Student Limit: " + studentLimit +
                 ".";
     }
+    
     @Override
     public int hashCode() {
         return Objects.hash(courseId);
-    }
-
+    }    
     
     
 }
