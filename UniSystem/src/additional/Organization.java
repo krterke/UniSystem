@@ -1,65 +1,98 @@
 package additional;
 
-import java.io.Serializable;
+
+import java.util.Objects;
+import database.*;
 import java.util.Vector;
 
-import users.Student;
+import users.*;
 
-public class Organization implements Serializable{
+public class Organization{
+    
     private String nameOfOrganization;
     private Vector<Student> members;
     private Student president;
-    private System system;
+    private Database database;
     private Student student;
-
-    public Organization(){
-
-    }
-    public Organization(String nameOfOrganization, System system, Student student){
+    
+    
+    
+    public Organization(){}
+    
+    public Organization(String nameOfOrganization, Database database, Student student){
         this.nameOfOrganization = nameOfOrganization;
-        this.system = system;
+        this.database = database;
         this.student = student;
     }
-
-    private String getNameOfOrganization() {
-        return this.nameOfOrganization;
-    }
-    private String setNameOfOrganization(String nameOfOrganization) {
+    public Organization(String nameOfOrganization){
         this.nameOfOrganization = nameOfOrganization;
     }
-    private Vector<Student> getMembers() {
+    
+    
+    
+    public String getNameOfOrganization() {
+        return nameOfOrganization;
+    }
+    
+    public void setNameOfOrganization(String nameOfOrganization) {
+        this.nameOfOrganization = nameOfOrganization;
+    }
+    
+    public Vector<Student> getMembers() {
         return this.members;
     }
-    private Vector<Student> setMembers(Vector<Student>2 members) {
+    
+    public void setMembers(Vector<Student> members) {
         this.members = members;
     }
-    private Student getPresident() {
+    
+    public Student getPresident() {
         return this.president;
     }
-    private Student setPresident(Student president) {
+    
+    public void setPresident(Student president) {
         this.president = president;
     }
-    public boolean addMember(Student S) {
+    
+    public boolean addMember(Student student) {
         for(Student cur:members){
-			if(cur.equals(s)) {
+			if(cur.equals(student)) {
 				return false;
 			}
 		}
-		members.add(s);
+		members.add(student);
 		return true;
     }
-    public boolean dropMember(Student S) {
+    
+    public boolean dropMember(Student student) {
         for(Student cur:members) {
-			if(cur.equals(s)) {
-				members.remove(s);
+			if(cur.equals(student)) {
+				members.remove(student);
 				return true;
 			}
 		}
 		return false;
     }
+    
+    
     public String toString() {
-		return "Name: "+nameOfOrganization+"\n"+"President: "+president;
+		return "Name: " + nameOfOrganization +"\n"+"President: "+president;
 	}
     
+    
+    
+    //my
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Organization that = (Organization) o;
+        return Objects.equals(nameOfOrganization, that.nameOfOrganization);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Objects.hash(nameOfOrganization);
+    }
     
 }
