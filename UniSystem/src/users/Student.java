@@ -1,11 +1,9 @@
-package Users;
+package users;
 
-import Enums.*;
+import additional.*;
+import course.*;
+import enums.*;
 
-
-//import Users.*;
-import Additional.*;
-import Package.*;
 import java.io.Serializable;
 import java.util.Vector;
 
@@ -25,7 +23,9 @@ public class Student extends User implements Serializable{
     private Vector<Course> enrolledCourses;
     
     
-    public Student() {}
+    public Student() {
+    	enrolledCourses = new Vector<>();
+    }
     
     public Student(String name, String surname, Gender gender, String email) {
     	super(name, surname, gender, email);
@@ -76,6 +76,12 @@ public class Student extends User implements Serializable{
     }
     
     
+    public Vector<Course> getEnrolledCourses() {
+        return enrolledCourses;
+    }
+
+    
+    
     public String viewCourse() {
         if (course != null) {
             return "Current Course: " + course.getCourseName(); // Assuming Course class has a method to get the course name
@@ -116,10 +122,8 @@ public class Student extends User implements Serializable{
         for (Course course : enrolledCourses) {
             marksInfo.append("Course: ").append(course.getCourseName()).append("\n");
 
-            // Assuming the GradeBook class has a method to retrieve marks
             GradeBook gradeBook = course.getGradebook();
             if (gradeBook != null) {
-                // Assuming GradeBook has a method to get marks for the student
                 Vector<Double> studentMarks = gradeBook.getStudentMarks(this);
 
                 if (studentMarks != null && !studentMarks.isEmpty()) {
@@ -135,18 +139,14 @@ public class Student extends User implements Serializable{
         return marksInfo.toString();
     }
 
-    
-    
     public String viewTranscript() {
         StringBuilder transcriptInfo = new StringBuilder("Transcript:\n");
 
         for (Course course : enrolledCourses) {
             transcriptInfo.append("Course: ").append(course.getCourseName()).append("\n");
 
-            // Assuming the GradeBook class has a method to retrieve marks
             GradeBook gradeBook = course.getGradebook();
             if (gradeBook != null) {
-                // Assuming GradeBook has a method to get marks for the student
                 Vector<Double> studentMarks = gradeBook.getStudentMarks(this);
 
                 if (studentMarks != null && !studentMarks.isEmpty()) {
@@ -161,6 +161,8 @@ public class Student extends User implements Serializable{
 
         return transcriptInfo.toString();
     }
+
+
 
     
     
@@ -250,7 +252,7 @@ public class Student extends User implements Serializable{
     public void becomeAMemberOfOrganization(Organization organization) {
         if (organization != null) {
             this.organization = organization;
-            System.out.println("Successfully joined the organization: " + organization.getOrganizationName());
+            System.out.println("Successfully joined the organization: " + organization.getNameOfOrganization());
         } else {
             System.out.println("Cannot join a null organization.");
         }
@@ -260,12 +262,24 @@ public class Student extends User implements Serializable{
     
     public String quitOrganization() {
         if (organization != null) {
-            String organizationName = organization.getOrganizationName();
+            String organizationName = organization.getNameOfOrganization();
             this.organization = null;
             return "Successfully quit the organization: " + organizationName;
         } else {
             return "Not a member of any organization.";
         }
+    }
+    
+    
+    public void displayStudentInfo() {
+        System.out.println("Student Information:");
+        System.out.println("Name: " + getName());
+        System.out.println("Surname: " + getSurname());
+        System.out.println("Gender: " + getGender());
+        System.out.println("Email: " + getEmail());
+        System.out.println("Enrolled Courses: " + enrolledCourses);
+        System.out.println("GPA: " + GPA);
+        System.out.println("Credits: " + credits);
     }
     
     
