@@ -1,48 +1,64 @@
 package additional;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
-import users.User;
+import database.Database;
+import research.ResearchPaper;
+import users.*;
+
+
 
 public class Journal {
+	
     private String name;
     private Vector<ResearchPaper> papers;
     private List<Observer> subscribers = new ArrayList<>();
-    // private User subscribers;
-    private System system;
-
-    //constructors
-    public Journal(){
+//  private User subscribers;
+    private Database database;
+    
+    
+    public Journal() {}
+    
+    public Journal(String name) {
+    	this.name = name;
     }
-    public Journal(String name,User subscribers,Vector<ResearchPaper> papers, System system;){
+    
+    public Journal(String name,List<Observer> subscribers,Vector<ResearchPaper> papers, Database database){
         this.name = name;
         this.papers = papers;
         this.subscribers = subscribers;
-        this.system = system;
+        this.database = database;
     }
-
-    // getters and setters
-    private String getName() {
+    
+    
+    
+    public String getName() {
         return this.name;
     }
-    private String setName(String name) {
+    
+    public void setName(String name) {
         this.name = name;
     }
-    private Vector<ResearchPaper> getPapers() {
+    
+    public Vector<ResearchPaper> getPapers() {
         return this.papers;
     }
-    private Vector<ResearchPaper> setPapers(Vector<ResearchPaper> papers) {
+    
+    public void setPapers(Vector<ResearchPaper> papers) {
         this.papers = papers;
     }
-    private User getSubscribers() {
+   
+    public List<Observer> getSubscribers() {
         return this.subscribers;
     }
-    private User setSubscribers(User subscribers) {
+ 
+    public void setSubscribers(List<Observer> subscribers) {
         this.subscribers = subscribers;
     }
-
-    //methods
+    
+    
+  //methods
     public void subscribe(Observer observer) {
         subscribers.add(observer);
     }
@@ -54,10 +70,5 @@ public class Journal {
             subscriber.update(name);
         }
     }
-    // !
-    interface Observer {
-        void update(String name);
-    }  
-
-
+    
 }
