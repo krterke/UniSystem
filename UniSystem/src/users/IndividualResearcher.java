@@ -1,7 +1,7 @@
 package users;
 
-import researcher.*;
 import enums.*;
+import research.*;
 
 
 public class IndividualResearcher extends Researcher {
@@ -9,6 +9,13 @@ public class IndividualResearcher extends Researcher {
 
     private int hIndex;
 
+    
+    public IndividualResearcher() {}
+    
+    public IndividualResearcher(String name, String surname, Gender gender, String email) throws Exception {
+        super(name, surname, gender, email);
+    }
+    
     public IndividualResearcher(String name, String surname, Gender gender, String email, int hIndex) throws Exception {
         super(name, surname, gender, email);
         this.hIndex = hIndex;
@@ -16,6 +23,9 @@ public class IndividualResearcher extends Researcher {
 
     public int getHIndex() {
         return hIndex;
+    }
+    public void setHIndex(int hIndex) {
+        this.hIndex = hIndex;
     }
 
     @Override
@@ -27,5 +37,13 @@ public class IndividualResearcher extends Researcher {
     public void publishPaper(ResearchPaper paper) {
         System.out.println("Publishing paper as an individual researcher...");
         getResearchProjects().forEach(project -> project.addPublishedPaper(paper));
+    }
+    
+    public static IndividualResearcher createResearcher(String name, String surname, Gender gender, String email) throws Exception {
+    	return new IndividualResearcher(name, surname, gender, email);
+    }
+    
+    public static IndividualResearcher createResearcher(String name, String surname, Gender gender, String email, int hIndex) throws Exception {
+    	return new IndividualResearcher(name, surname, gender, email, hIndex);
     }
 }
