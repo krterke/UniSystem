@@ -1,11 +1,11 @@
-package Database;
+package database;
 
 import java.util.Vector;
 
-import Package.*;
-import Enums.*;
-import Additional.*;
-import Users.*;
+import course.*;
+import enums.*;
+import additional.*;
+import users.*;
 
 public class TestDatabase {
 	public static void main(String[] args) throws Exception {
