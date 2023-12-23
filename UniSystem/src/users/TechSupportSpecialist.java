@@ -1,10 +1,15 @@
-package Users;
+package users;
 
 import java.io.Serializable;
 
-import Enums.Gender;
+import course.*;
+import enums.*;
 
 public class TechSupportSpecialist extends Employee implements Serializable{
+	
+	
+	private static final long serialVersionUID = 123456789L;
+
 	
 	public TechSupportSpecialist() {}
     
@@ -12,8 +17,15 @@ public class TechSupportSpecialist extends Employee implements Serializable{
     	super(name, surname, gender, email);
     }
    
-    public void acceptOrder() {
-        //TODO
+    public void acceptOrder(Order order) {
+        // Assuming Order class is available and contains necessary information
+        // Process the order and perform necessary actions
+        System.out.println("Order accepted. Processing...");
+        // Example: Log the order details
+        System.out.println("Order Details: " + order.toString());
+        // Example: Update the status of the order
+        order.setStatus(OrderStatus.ACCEPTED);
+        System.out.println("Order processed successfully.");
     }
     
     
