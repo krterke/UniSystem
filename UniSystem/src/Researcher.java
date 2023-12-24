@@ -1,7 +1,7 @@
 package users;
 
-import researcher.ResearchPaper;
-import researcher.ResearchProject;
+import research.ResearchPaper;
+import research.ResearchProject;
 import enums.*;
 
 import java.util.Vector;
